@@ -7,8 +7,8 @@ class PersonUseCase {
 		this.personRepository = new PersonRepositoryPrisma();
 	}
 
-	async findAll(): Promise<Person[]> {
-		const result = await this.personRepository.findAll();
+	async findById(personId: string): Promise<Person | null> {
+		const result = await this.personRepository.findById(personId);
 		return result;
 	}
 }

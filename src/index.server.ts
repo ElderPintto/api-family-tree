@@ -1,4 +1,4 @@
-import { app } from "./infra/server/index.fastify";
+import { app } from "./infra/server/index.fastify.js";
 
 const start = async () => {
 	try {

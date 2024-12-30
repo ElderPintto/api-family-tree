@@ -13,10 +13,10 @@ export function get(app: FastifyTypeInstance) {
 				response: {
 					200: z.array(Person),
 					400: z.object({
-						error: z.object({}),
+						message: z.object({}),
 					}),
 					500: z.object({
-						error: z.object({}),
+						message: z.object({}),
 					}),
 				},
 			},
@@ -27,12 +27,12 @@ export function get(app: FastifyTypeInstance) {
 				const result = await personUseCase.findAll();
 
 				if (!result) {
-					return reply.status(400).send({ error: "Error fetching people" });
+					return reply.status(400).send({ message: "Error fetching people" });
 				}
 
 				return reply.status(200).send(result as unknown as Person[]);
 			} catch (error) {
-				reply.status(500).send({ error: String(error) });
+				reply.status(500).send({ message: String(error) });
 			}
 		},
 	);

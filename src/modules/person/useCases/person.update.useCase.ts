@@ -1,4 +1,8 @@
-import type { Person, PersonRepository } from "../interfaces/index.js";
+import type {
+	Person,
+	PersonRepository,
+	PersonUpdate,
+} from "../interfaces/index.js";
 import { PersonRepositoryPrisma } from "../repositories/person.repository.js";
 
 class PersonUseCase {
@@ -7,8 +11,8 @@ class PersonUseCase {
 		this.personRepository = new PersonRepositoryPrisma();
 	}
 
-	async findAll(): Promise<Person[]> {
-		const result = await this.personRepository.findAll();
+	async update(personId: string, person: PersonUpdate): Promise<Person | null> {
+		const result = await this.personRepository.update(personId, person);
 		return result;
 	}
 }

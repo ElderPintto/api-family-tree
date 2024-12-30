@@ -22,10 +22,20 @@ export const Person = z.object({
 	currentDistrict: z.string(),
 });
 
+export const PersonUpdate = Person.omit({
+	id: true,
+	email: true,
+	password: true,
+});
+
 export type Person = z.infer<typeof Person>;
 export type PersonCreate = Omit<Person, "id">;
+export type PersonUpdate = z.infer<typeof PersonUpdate>;
 
 export interface PersonRepository {
 	create(data: PersonCreate): Promise<Person>;
 	findAll(): Promise<Person[]>;
+	findById(personId: string): Promise<Person | null>;
+	update(personId: string, person: PersonUpdate): Promise<Person | null>;
+	remove(personId: string): Promise<void>;
 }
